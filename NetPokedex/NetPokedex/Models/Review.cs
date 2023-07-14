@@ -7,5 +7,6 @@
         public String Text { get; set; }
         public Reviewer Reviewer { get; set; }
         public Pokemon Pokemon { get; set; }
+        public decimal Rating { get; set; }
     }
 }
