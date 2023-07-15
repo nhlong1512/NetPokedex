@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "i1ZOnBlt7CzDb8vfqFMnt1TgmLmvWEuU5t+a6ci/RcBYtygEd0Sd0Mq91wVR+LytJS0c6QHU95oR8MH/QxSBug==",
+  "dgSpecHash": "/g5xAmMWc0tkM5w8j34qTpEvH1/1Vdcf9HuZTCCxNVP73GXfl3i1UKL2rBWMbUCf5eekBWHBus3PIvIY2kTSvA==",
   "success": true,
   "projectFilePath": "D:\\VS\\NetPokedex\\NetPokedex\\NetPokedex\\NetPokedex.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Administrator\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

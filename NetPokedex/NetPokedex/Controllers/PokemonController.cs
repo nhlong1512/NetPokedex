@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using NetPokedex.Data;
+using NetPokedex.Dto;
 using NetPokedex.Interfaces;
 using NetPokedex.Models;
 using System;
@@ -11,18 +13,18 @@ namespace NetPokedex.Controllers
     public class PokemonController : Controller
     {
         private readonly IPokemonRepository _pokemonRepository;
-        private readonly DataContext _datacontext;
+        private readonly IMapper _mapper;
 
-        public PokemonController(IPokemonRepository pokemonRepository, DataContext datacontext)
+        public PokemonController(IPokemonRepository pokemonRepository, IMapper mapper)
         {
             _pokemonRepository = pokemonRepository;
-            _datacontext = datacontext;
+            _mapper = mapper;
         }
         [HttpGet]
         [ProducesResponseType(200,Type=typeof(IEnumerable<Pokemon>))]
         public IActionResult GetPokemons()
         {
-            var pokemons = _pokemonRepository.GetPokemons();
+            var pokemons = _mapper.Map<List<PokemonDto>>(_pokemonRepository.GetPokemons());
             if(!ModelState.IsValid)     
             {
                 return BadRequest(ModelState);
@@ -39,7 +41,7 @@ namespace NetPokedex.Controllers
             {
                 return NotFound();
             }
-            var pokemon = _pokemonRepository.GetPokemon(pokeId);
+            var pokemon = _mapper.Map<PokemonDto>(_pokemonRepository.GetPokemon(pokeId));
             if (!ModelState.IsValid)
             {
                 return BadRequest();
