@@ -8,7 +8,7 @@ namespace NetPokedex.Interfaces
         Pokemon GetPokemon(int pokeId);
         Pokemon GetPokemon(string pokeName);
         decimal GetPokemonRating(int pokeId);
-        bool PokemonExist(int pokeId);
+        bool PokemonExists(int pokeId);
 
     }
 }

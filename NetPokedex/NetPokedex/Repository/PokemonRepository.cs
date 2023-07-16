@@ -4,7 +4,7 @@ using NetPokedex.Models;
 
 namespace NetPokedex.Repository
 {
-    public class PokemonRepository:IPokemonRepository
+    public class PokemonRepository : IPokemonRepository
     {
         private readonly DataContext _context;
 
@@ -26,7 +26,7 @@ namespace NetPokedex.Repository
         public decimal GetPokemonRating(int pokeId)
         {
             var review = _context.Reviews.Where(p => p.Pokemon.Id == pokeId);
-            if(review.Count() <= 0)
+            if (review.Count() <= 0)
             {
                 return 0;
             }
@@ -38,7 +38,7 @@ namespace NetPokedex.Repository
             return _context.Pokemons.OrderBy(p => p.Id).ToList();
         }
 
-        public bool PokemonExist(int pokeId)
+        public bool PokemonExists(int pokeId)
         {
             return _context.Pokemons.Any(p => p.Id == pokeId);
         }
