@@ -48,7 +48,7 @@ namespace NetPokedex.Controllers
             return Ok(owner);
         }
 
-        [HttpGet("/pokemon/{ownerId}")]
+        [HttpGet("{ownerId}/pokemon")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Pokemon>))]
         [ProducesResponseType(400)]
         public IActionResult GetPokemonsByOwner(int ownerId)

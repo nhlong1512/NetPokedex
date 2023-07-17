@@ -47,7 +47,7 @@ namespace NetPokedex.Controllers
             return Ok(country);
         }
 
-        [HttpGet("owners/{ownerId}")]
+        [HttpGet("{ownerId}/country")]
         [ProducesResponseType(200, Type = typeof(Country))]
         [ProducesResponseType(400)]
         public IActionResult GetCountryByOwner(int ownerId)
