@@ -12,7 +12,7 @@ using NetPokedex.Data;
 namespace NetPokedex.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230714153712_InitialCreate")]
+    [Migration("20230717102332_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
