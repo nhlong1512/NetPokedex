@@ -1,4 +1,5 @@
-﻿using NetPokedex.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using NetPokedex.Data;
 using NetPokedex.Interfaces;
 using NetPokedex.Models;
 
@@ -12,6 +13,8 @@ namespace NetPokedex.Repository
         {
            _context = context;
         }
+
+
         public Owner GetOwner(int ownerId)
         {
             return _context.Owners.Where(o => o.Id == ownerId).FirstOrDefault();
@@ -35,6 +38,18 @@ namespace NetPokedex.Repository
         public bool OwnerExists(int ownerId)
         {
             return _context.Owners.Any(o => o.Id == ownerId);
+        }
+
+        public bool CreateOwner(Owner owner)
+        {
+            _context.Add(owner);
+            return Save();
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
         }
     }
 }

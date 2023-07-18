@@ -9,6 +9,7 @@ namespace NetPokedex.Helper
         public MappingProfile()
         {
             CreateMap<Pokemon, PokemonDto>();
+            CreateMap<PokemonDto, PokemonDto>();    
             CreateMap<Category, CategoryDto>();
             CreateMap<CategoryDto, Category>();
             CreateMap<Country, CountryDto>();

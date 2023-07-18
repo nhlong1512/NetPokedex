@@ -9,5 +9,7 @@ namespace NetPokedex.Interfaces
         bool OwnerExists(int ownerId);
         ICollection<Pokemon> GetPokemonsByOwner(int ownerId);
         ICollection<Owner> GetOwnersByPokemon(int pokemonId);
+        bool Save();
+        bool CreateOwner(Owner owner);
     }
 }
