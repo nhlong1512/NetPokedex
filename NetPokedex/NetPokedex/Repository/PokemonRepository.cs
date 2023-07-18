@@ -1,4 +1,5 @@
-﻿using NetPokedex.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using NetPokedex.Data;
 using NetPokedex.Interfaces;
 using NetPokedex.Models;
 
@@ -38,9 +39,38 @@ namespace NetPokedex.Repository
             return _context.Pokemons.OrderBy(p => p.Id).ToList();
         }
 
+
         public bool PokemonExists(int pokeId)
         {
             return _context.Pokemons.Any(p => p.Id == pokeId);
         }
+
+        public bool CreatePokemon(int ownerId, int categoryId, Pokemon pokemon)
+        {
+            var owner = _context.Owners.Where(a => a.Id == ownerId).FirstOrDefault();
+            var pokemonOwner = new PokemonOwner()
+            {
+                Owner = owner,
+                Pokemon = pokemon,
+            };
+            var category = _context.Categories.Where(a => a.Id == categoryId).FirstOrDefault();
+            var pokemonCategory = new PokemonCategory()
+            {
+                Category = category,
+                Pokemon = pokemon,
+            };
+            _context.Add(pokemonOwner);
+            _context.Add(pokemonCategory);
+            _context.Add(pokemon);
+            return Save();
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
+        }
+
+
     }
 }
