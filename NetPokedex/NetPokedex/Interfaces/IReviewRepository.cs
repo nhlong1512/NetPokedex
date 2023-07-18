@@ -8,5 +8,7 @@ namespace NetPokedex.Interfaces
         Review GetReview(int reviewId);
         bool ReviewExists (int reviewId);
         ICollection<Review> GetReviewsByPokemon(int pokemonId);
+        bool Save();
+        bool CreateReview(Review review);
     }
 }

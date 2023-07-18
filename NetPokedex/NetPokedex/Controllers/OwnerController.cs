@@ -70,9 +70,9 @@ namespace NetPokedex.Controllers
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public IActionResult CreateOwner ([FromQuery] int countryId, [FromBody] OwnerDto ownerCreate)
+        public IActionResult CreateOwner([FromQuery] int countryId, [FromBody] OwnerDto ownerCreate)
         {
-            if(ownerCreate == null)
+            if (ownerCreate == null)
             {
                 return BadRequest(ModelState);
             }
@@ -81,7 +81,6 @@ namespace NetPokedex.Controllers
             {
                 return BadRequest(ModelState);
             }
-
             var ownerMap = _mapper.Map<Owner>(ownerCreate);
             ownerMap.Country = _countryRepository.GetCountry(countryId);
             if (!_ownerRepository.CreateOwner(ownerMap))

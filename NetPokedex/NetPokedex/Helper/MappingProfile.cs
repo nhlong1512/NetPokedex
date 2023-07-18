@@ -19,7 +19,7 @@ namespace NetPokedex.Helper
             CreateMap<Review, ReviewDto>();
             CreateMap<ReviewDto, Review>();
             CreateMap<Reviewer, ReviewerDto>();
-            CreateMap<ReviewDto, Review>();
+            CreateMap<ReviewerDto, Reviewer>();
         }
     }
 }
