@@ -8,6 +8,8 @@ namespace NetPokedex.Interfaces
         Category GetCategory(int categoryId);
         ICollection<Pokemon> GetPokemonsByCategoryId(int categoryId);
         bool CategoryExists(int categoryId);
+        bool CreateCategory(Category category);
+        bool Save();
         
     }
 }
