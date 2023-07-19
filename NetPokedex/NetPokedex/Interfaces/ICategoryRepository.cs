@@ -9,6 +9,7 @@ namespace NetPokedex.Interfaces
         ICollection<Pokemon> GetPokemonsByCategoryId(int categoryId);
         bool CategoryExists(int categoryId);
         bool CreateCategory(Category category);
+        bool UpdateCategory(Category category);
         bool Save();
         
     }

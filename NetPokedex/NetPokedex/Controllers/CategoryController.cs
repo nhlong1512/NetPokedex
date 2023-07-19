@@ -69,7 +69,7 @@ namespace NetPokedex.Controllers
         [ProducesResponseType(400)]
         public IActionResult CreateCategory([FromBody] CategoryDto categoryCreate)
         {
-            if(categoryCreate == null)
+            if (categoryCreate == null)
             {
                 return BadRequest(ModelState);
             }
@@ -77,7 +77,7 @@ namespace NetPokedex.Controllers
                 .Where(c => c.Name.Trim().ToUpper() == categoryCreate.Name.Trim().ToUpper())
                 .FirstOrDefault();
 
-            if(category != null)
+            if (category != null)
             {
                 ModelState.AddModelError("", "Category already exists");
                 return StatusCode(422, ModelState);
@@ -97,6 +97,36 @@ namespace NetPokedex.Controllers
             }
 
             return Ok("Successfully created");
+        }
+        [HttpPut("{categoryId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdateCategory(int categoryId, [FromBody] CategoryDto categoryUpdate)
+        {
+            if(categoryUpdate == null)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if(categoryUpdate.Id != categoryId)
+            {
+                ModelState.AddModelError("", "Id doesn't match");
+                return BadRequest(ModelState);
+            }
+
+            if(!_categoryRepository.CategoryExists(categoryId))
+            {
+                return NotFound();
+            }
+
+            var categoryMap = _mapper.Map<Category>(categoryUpdate);
+            if(!_categoryRepository.UpdateCategory(categoryMap))
+            {
+                ModelState.AddModelError("","Something went wrong");
+                return StatusCode(500, ModelState);
+            }
+            return Ok("Successfully updated");
         }
     }
 }
