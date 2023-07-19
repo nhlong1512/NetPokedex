@@ -8,5 +8,7 @@ namespace NetPokedex.Interfaces
         Reviewer GetReviewer(int reviewerId);
         bool ReviewerExists(int reviewerId);
         ICollection<Review> GetReviewsByReviewer(int reviewerId);
+        bool Save();
+        bool CreateReviewer(Reviewer reviewer);
     }
 }
