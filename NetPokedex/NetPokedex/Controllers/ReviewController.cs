@@ -120,6 +120,31 @@ namespace NetPokedex.Controllers
 
             return Ok("Successfully update");
         }
+
+        [HttpDelete("{reviewId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult DeleteReview(int reviewId)
+        {
+            if(!_reviewRepository.ReviewExists(reviewId))
+            {
+                return NotFound();
+            }
+
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var review = _reviewRepository.GetReview(reviewId);
+            if (!_reviewRepository.DeleteReview(review))
+            {
+                ModelState.AddModelError("", "Something went wrong");
+                return StatusCode(500, ModelState);
+            }
+            return Ok("Successfully deleted");
+        }
     }
 }
 

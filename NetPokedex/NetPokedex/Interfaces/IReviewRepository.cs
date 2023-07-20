@@ -10,6 +10,7 @@ namespace NetPokedex.Interfaces
         ICollection<Review> GetReviewsByPokemon(int pokemonId);
         bool CreateReview(Review review);
         bool UpdateReview(Review review);
+        bool DeleteReview(Review review);
         bool Save();
     }
 }
