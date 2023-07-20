@@ -95,7 +95,7 @@ namespace NetPokedex.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
-        public IActionResult UpdateOwner(int ownerId, OwnerDto ownerUpdate)
+        public IActionResult UpdateOwner(int ownerId,[FromBody] OwnerDto ownerUpdate)
         {
             if(ownerUpdate == null)
             {

@@ -99,7 +99,7 @@ namespace NetPokedex.Controllers
 
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public IActionResult UpdatePokemon (int pokemonId, PokemonDto pokemonUpdate)
+        public IActionResult UpdatePokemon (int pokemonId,[FromBody] PokemonDto pokemonUpdate)
         {
             if(pokemonUpdate == null)
             {

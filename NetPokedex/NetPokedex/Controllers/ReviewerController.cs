@@ -92,7 +92,7 @@ namespace NetPokedex.Controllers
         [ProducesResponseType(404)]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public IActionResult UpdateReviewer(int reviewerId, ReviewerDto reviewerUpdate)
+        public IActionResult UpdateReviewer(int reviewerId,[FromBody] ReviewerDto reviewerUpdate)
         {
             if(reviewerUpdate == null)
             {

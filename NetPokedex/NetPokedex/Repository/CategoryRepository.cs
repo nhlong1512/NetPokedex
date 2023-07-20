@@ -43,6 +43,12 @@ namespace NetPokedex.Repository
             return Save();
         }
 
+        public bool DeleteCategory (Category category)
+        {
+            _context.Remove(category);
+            return Save();
+        }
+        
         public bool Save()
         {
             var saved = _context.SaveChanges();

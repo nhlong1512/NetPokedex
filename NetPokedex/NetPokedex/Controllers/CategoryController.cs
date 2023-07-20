@@ -126,7 +126,35 @@ namespace NetPokedex.Controllers
                 ModelState.AddModelError("","Something went wrong");
                 return StatusCode(500, ModelState);
             }
+
             return Ok("Successfully updated");
+        }
+
+        [HttpDelete("{categoryId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult DeleteCategory(int categoryId)
+        {
+            if (!_categoryRepository.CategoryExists(categoryId))
+            {
+                return NotFound();
+            }
+
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var category = _categoryRepository.GetCategory(categoryId);
+            if (!_categoryRepository.DeleteCategory(category))
+            {
+                ModelState.AddModelError("", "Something went wrong");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Successfully deleted");
+
         }
     }
 }
