@@ -87,5 +87,36 @@ namespace NetPokedex.Controllers
 
             return Ok("Successfully created");
         }
+
+        [HttpPut("{reviewerId}")]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult UpdateReviewer(int reviewerId, ReviewerDto reviewerUpdate)
+        {
+            if(reviewerUpdate == null)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if(reviewerId != reviewerUpdate.Id)
+            {
+                ModelState.AddModelError("", "Id doesn't match");
+                return BadRequest(ModelState);
+            }
+
+            if (!_reviewerRepository.ReviewerExists(reviewerId))
+            {
+                return NotFound();
+            }
+
+            var reviewerMap = _mapper.Map<Reviewer>(reviewerUpdate);
+            if (!_reviewerRepository.UpdateReviewer(reviewerMap))
+            {
+                ModelState.AddModelError("", "Something went wrong");
+                return StatusCode(500, ModelState);
+            }
+            return Ok("Successfully updated");
+        }
     }
 }

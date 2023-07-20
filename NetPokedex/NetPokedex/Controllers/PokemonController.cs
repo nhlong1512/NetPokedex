@@ -121,7 +121,7 @@ namespace NetPokedex.Controllers
             if (!_pokemonRepository.UpdatePokemon(pokemonMap))
             {
                 ModelState.AddModelError("", "Something went wrong");
-                return BadRequest(ModelState);
+                return StatusCode(500,ModelState);
             }
             return Ok("Successfully updated");
         }

@@ -115,7 +115,7 @@ namespace NetPokedex.Controllers
             if (!_reviewRepository.UpdateReview(reviewMap))
             {
                 ModelState.AddModelError("","Something went wrong");
-                return BadRequest(ModelState);
+                return StatusCode(500, ModelState);
             }
 
             return Ok("Successfully update");
