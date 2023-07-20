@@ -93,5 +93,36 @@ namespace NetPokedex.Controllers
 
             return Ok("Successfully created");
         }
+
+        [HttpPut("{pokemonId}")]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult UpdatePokemon (int pokemonId, PokemonDto pokemonUpdate)
+        {
+            if(pokemonUpdate == null)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if(pokemonId != pokemonUpdate.Id)
+            {
+                ModelState.AddModelError("", "Id doesn't match");
+                return BadRequest(ModelState);
+            }
+
+            if (!_pokemonRepository.PokemonExists(pokemonId))
+            {
+                return NotFound();
+            }
+
+            var pokemonMap = _mapper.Map<Pokemon>(pokemonUpdate);
+            if (!_pokemonRepository.UpdatePokemon(pokemonMap))
+            {
+                ModelState.AddModelError("", "Something went wrong");
+                return BadRequest(ModelState);
+            }
+            return Ok("Successfully updated");
+        }
     }
 }

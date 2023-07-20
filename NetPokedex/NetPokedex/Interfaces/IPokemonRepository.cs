@@ -9,8 +9,9 @@ namespace NetPokedex.Interfaces
         Pokemon GetPokemon(string pokeName);
         decimal GetPokemonRating(int pokeId);
         bool PokemonExists(int pokeId);
-        bool Save();
         bool CreatePokemon(int ownerId, int categoryId, Pokemon pokemon);
+        bool UpdatePokemon(Pokemon pokemon);
+        bool Save();
 
     }
 }
