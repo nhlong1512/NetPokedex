@@ -11,6 +11,7 @@ namespace NetPokedex.Interfaces
         bool CountryExists(int countryId);
         bool CreateConuntry(Country country);
         bool UpdateCountry(Country country);
+        bool DeleteCountry(Country country);
         bool Save();
     }
 }
