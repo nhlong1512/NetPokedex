@@ -96,6 +96,7 @@ namespace NetPokedex.Controllers
 
         [HttpPut("{pokemonId}")]
         [ProducesResponseType(404)]
+
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         public IActionResult UpdatePokemon (int pokemonId, PokemonDto pokemonUpdate)
