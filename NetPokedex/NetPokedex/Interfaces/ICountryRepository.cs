@@ -10,6 +10,7 @@ namespace NetPokedex.Interfaces
         ICollection<Owner> GetOwnersByCountry(int countryId);
         bool CountryExists(int countryId);
         bool CreateConuntry(Country country);
+        bool UpdateCountry(Country country);
         bool Save();
     }
 }

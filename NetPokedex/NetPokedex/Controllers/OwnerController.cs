@@ -90,5 +90,37 @@ namespace NetPokedex.Controllers
             }
             return Ok("Successfully created");
         }
+
+        [HttpPut("{ownerId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdateOwner(int ownerId, OwnerDto ownerUpdate)
+        {
+            if(ownerUpdate == null)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if(ownerId != ownerUpdate.Id)
+            {
+                ModelState.AddModelError("", "Id doesn't match");
+                return BadRequest(ModelState);
+            }
+
+            if (!_ownerRepository.OwnerExists(ownerId))
+            {
+                return NotFound();
+            }
+
+            var ownerMap = _mapper.Map<Owner>(ownerUpdate);
+            if (!_ownerRepository.UpdateOwner(ownerMap))
+            {
+                ModelState.AddModelError("", "Something went wrong");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Successfully updated");
+        }
     }
 }
